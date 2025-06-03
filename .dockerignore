@@ -1,0 +1,46 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Node
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+pnpm-lock.yaml # COPY pnpm-lock.yaml* ./ の後に pnpm install するなら、これはコピー対象
+
+# Docker
+Dockerfile # Dockerfile自体はコンテキストには必要だが、イメージ内には不要なことが多い
+compose.yaml # 同上
+.dockerignore # 同上
+
+# Plasmo build artifacts
+.plasmo/
+build/
+dist/ # もし生成されるなら
+out/  # もし生成されるなら
+
+# OS specific
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Editor/IDE specific (イメージ内には不要)
+.vscode/
+.idea/
+
+# Local environment files (イメージに含めるべきではない)
+.env
+.env.*.local
+.env.local
+
+# Test files (もしイメージに含めたくない場合)
+# src/**/*.test.ts
+# src/**/*.spec.ts
+# coverage/
+
+# Other misc files
+README.md # ドキュメントはイメージに不要なことが多い
+*.md # README以外のマークダウンファイルも

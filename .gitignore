@@ -1,0 +1,53 @@
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+/.pnpm-store/
+
+# Testing
+/coverage
+
+# Misc
+.DS_Store
+*.pem
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Local env files
+.env*.local
+.env
+# 一般的な.envファイルも無視することが多い (ローカル環境変数)
+
+# Build/Distribution output
+/out/
+/build/
+/dist/
+
+# Plasmo
+/.plasmo/
+
+# TypeScript
+.tsbuildinfo
+
+# Editor directories and files
+.vscode/
+# VSCodeの設定ファイルは共有することが多いので、無視しないのが一般的
+# ただし、個人設定 (例: .vscode/settings.json の一部) を分けたい場合は、
+# .vscode/*
+# !.vscode/extensions.json
+# !.vscode/settings.json (共有したい部分だけ残す)
+# のようにすることも可能。基本は共有推奨。
+.idea/ # JetBrains IDEs
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Logs
+logs
+*.log
