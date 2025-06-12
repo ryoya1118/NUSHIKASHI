@@ -1,23 +1,36 @@
+
+
+
 FROM node:23
 
+
 RUN apt-get update && apt-get install -y \
+    git \
     tree \
     sudo \
-    && rm -rf /var/lib/apt/lists/* \
-    && echo "node ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/node \
-    && chmod 0440 /etc/sudoers.d/node
+    && rm -rf /var/lib/apt/lists/*
 
 RUN npm install -g pnpm
 
+
+RUN echo "node ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/node \
+    && chmod 0440 /etc/sudoers.d/node
+
+
+USER node
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml* ./
+
+COPY --chown=node:node package.json pnpm-lock.yaml* ./
+
+
+
+COPY --chown=node:node . .
+
+
 
 RUN pnpm install
 
-COPY . .
-
-USER node
 
 EXPOSE 1012
 EXPOSE 1815

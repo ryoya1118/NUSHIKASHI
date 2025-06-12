@@ -32,10 +32,17 @@ declare module "pdfjs-dist" {
   }
 
   // getDocument 関数のシグネチャ
-  export function getDocument(src: string | URL | Uint8Array | PDFDataRangeTransport | DocumentInitParameters): PDFDocumentLoadingTask<PDFDocumentProxy>;
+  export function getDocument(
+    src:
+      | string
+      | URL
+      | Uint8Array
+      | PDFDataRangeTransport
+      | DocumentInitParameters
+  ): PDFDocumentLoadingTask<PDFDocumentProxy>
 
   export interface PDFDocumentLoadingTask<T> {
-    promise: Promise<T>;
+    promise: Promise<T>
   }
 
   // 他に必要な型があればここに追加

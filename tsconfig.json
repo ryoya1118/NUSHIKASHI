@@ -9,11 +9,25 @@
     "./**/*.tsx"
   ],
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
       "~*": [
-         "./src/*"
+        "src/*"
       ]
     },
-    "baseUrl": "."
+
+    "jsx": "react-jsx",
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "bundler",
+
+    "strict": true,
+    "allowJs": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   }
 }

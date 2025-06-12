@@ -1,72 +1,32 @@
-// .devcontainer/devcontainer.json
 {
-  "name": "Plasmo Browser Extension (Dev Container)",
-
-  // 既存のdocker-compose.yaml (compose.yaml) を利用する
-  "dockerComposeFile": [
-    "../compose.yaml" // プロジェクトルートからの相対パス
-  ],
-
-  // docker-compose.yamlで定義されているサービス名を指定
-  "service": "app",
-
-  // VS Codeで開くワークスペースのパスをコンテナ内のパスで指定
-  "workspaceFolder": "/app",
-
-  // (オプション) コンテナ内でデフォルトで実行するユーザーを指定
-  // Node.js公式イメージは 'node' ユーザーを作成し、利用することが多いです。
-  // これにより、root権限での実行を避けられます。
-  "remoteUser": "node",
-
-  "postStartCommand": "sudo chown -R $(whoami):$(whoami) /app",
-
-
-  // (オプション) VS Codeの設定や拡張機能を指定
-  "customizations": {
-    "vscode": {
-      "settings": {
-        // 例: ターミナルのデフォルトシェル
-        "terminal.integrated.defaultProfile.linux": "bash", // または /bin/zsh など
-        // 例: 保存時にフォーマット (Prettierなどがインストールされている場合)
-        "editor.formatOnSave": true,
-        "[javascript]": {
-          "editor.defaultFormatter": "esbenp.prettier-vscode"
-        },
-        "[typescript]": { // TypeScriptを使用している場合
-          "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "name": "Plasmo Browser Extension (Dev Container)",
+    "dockerComposeFile": [
+        "../compose.yaml"
+    ],
+    "service": "app",
+    "workspaceFolder": "/app",
+    "remoteUser": "node",
+    "postCreateCommand": "git config --global user.name 'ryoya' && git config --global user.email 'machino.ryoya@arakawa-lab.com'",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "editor.formatOnSave": true,
+                "[javascript]": {
+                    "editor.defaultFormatter": "esbenp.prettier-vscode"
+                },
+                "[typescript]": {
+                    "editor.defaultFormatter": "esbenp.prettier-vscode"
+                }
+            },
+            "extensions": [
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "ms-azuretools.vscode-docker",
+                "GitHub.copilot",
+                "PlasmoHQ.plasmo-vscode"
+            ]
         }
-        // PlasmoのHMRのためにファイル監視のポーリングを有効にする (特にWSL2環境で効果がある場合があります)
-        // "files.watcherExclude": { // 既にある設定に追記するか、新規に設定
-        //   "**/node_modules/**": true,
-        //   "**/.git/**": true,
-        //   "**/build/**": true, // Plasmoのビルド出力ディレクトリ
-        //   "**/.plasmo/**": true // Plasmoのキャッシュディレクトリ
-        // },
-        // "remote.Containers.fileWatcher.polling": true // HMRが不安定な場合に試す
-      },
-      "extensions": [
-        "dbaeumer.vscode-eslint",         // ESLint (もし使用していれば)
-        "esbenp.prettier-vscode",       // Prettier (もし使用していれば)
-        "ms-azuretools.vscode-docker",    // Docker拡張機能
-        "GitHub.copilot",               // GitHub Copilot (もし使用していれば)
-        "PlasmoHQ.plasmo-vscode"        // Plasmo公式のVSCode拡張機能 (強く推奨)
-        // その他、開発に使用している拡張機能があれば追加
-        // 例: "bierner.markdown-preview-github-styles" (Markdownプレビュー)
-        // 例: "ms-vscode.vscode-typescript-next" (TypeScript最新サポート)
-      ]
-    }
-  },
-
-  // (オプション) コンテナ作成後に一度だけ実行されるコマンド
-  // "postCreateCommand": "pnpm install --no-frozen-lockfile", // 依存関係を強制的に更新したい場合など
-  "postCreateCommand": "git config --global user.name 'ryoya' && git config --global user.email 'machino.ryoya@arakawa-lab.com'",
-
-  // (オプション) VS Codeがコンテナにアタッチするたびに実行されるコマンド
-  // 開発サーバーを自動起動したい場合に便利です。
-  // "postAttachCommand": {
-  //   "devServer": "pnpm dev" // 'pnpm dev' はpackage.jsonのscriptsにあると仮定
-  // },
-
-  // (オプション) コンテナ終了時の動作
-  "shutdownAction": "stopCompose" // 'Reopen on Host' などを選択した際にCompose全体を停止する
+    },
+    "shutdownAction": "stopCompose"
 }
